@@ -12,13 +12,13 @@
 <%-include('extras/errors.ejs')%>
 <form action="/signup" method="post">
     <label for="firstName">Enter First Name: </label>
-    <input type="text" name="firstName">
+    <input type="text" name="firstName" required>
     <label for="lastName">Enter Last Name: </label>
-    <input type="text" name="lastName">
+    <input type="text" name="lastName" required>
     <label for="username">Enter email: </label>
-    <input type="email" name="username">
+    <input type="email" name="username" required>
     <label for="password">Enter password: </label>
-    <input type="password" name="password">
+    <input type="password" name="password" required>
     <button type="submit">submit</button>
 </form>  
 </body>

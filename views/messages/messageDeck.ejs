@@ -1,0 +1,11 @@
+<ul>
+    <% if(locals.messages){%>
+        <% messages.forEach((message)=>{%>
+            <li>
+                <%-include('messages/messageCard',{message: message})%>
+            </li>
+        <%})%>
+    <%} else{ %>
+        <h2>Nothing to show you here!</h2>
+    <%}%>
+</ul>

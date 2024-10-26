@@ -52,6 +52,7 @@ async function readMessageById(id){
 async function readAllMessages(){
     try {
         const {rows}= await pool.query("SELECT * FROM messages");
+        return rows;
     } catch (err) {
         console.error(err);
         throw new Error(err);

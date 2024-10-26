@@ -1,6 +1,8 @@
 import { Router } from "express";
 const appRouter= Router();
 import { usersController } from "../controllers/userscontroller.mjs";
+import { messageQueries } from "../database/messages.mjs";
+import {messageController} from '../controllers/messageController.mjs';
 
 appRouter.get("/", (req, res)=>{
     if(req.isAuthenticated()){
@@ -15,13 +17,16 @@ appRouter.get("/logout",usersController.getLogout);
 appRouter.get("/login", (req, res, next)=>{
     res.render("user/login");
 });
-appRouter.get('/main-content', usersController.ensureAuthenticated, (req, res)=>{
+appRouter.get('/main-content', usersController.ensureAuthenticated, async (req, res)=>{
+    const messages = await messageQueries.readAllMessages();
+    console.log(messages);    
     res.render('mainContent',{
         user: req.user,
+        messages: messages,
     });
 });
 appRouter.get('/manage-account/:id',usersController.getManageUser);
 appRouter.post("/login",usersController.postLogin);
-
+appRouter.post('/message/delete/:id',messageController.postDeleteMessage);
 
 export default appRouter;

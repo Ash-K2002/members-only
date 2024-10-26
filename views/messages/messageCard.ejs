@@ -1,3 +1,17 @@
-<p>
-    
-</p>
+<section>
+    <h3><%= message.heading %></h3>
+    <p><%= message.content %></p>
+
+    <% if(role!=='user') {%>
+    <p>Created at: <%= message.created_at%></p>
+    <p>Updated at: <%= message.updated_at%></p>
+    <% } %>
+
+    <% if(role==='admin') {%>
+        <form action="message/delete/<%=message.id%>" method="post">
+            <button type="submit">delete message</button>
+        </form>
+    <%}%>
+
+
+</section>

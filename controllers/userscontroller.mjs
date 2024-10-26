@@ -12,11 +12,11 @@ const postSignup=[
     async function (req, res, next){
         const errors= validationResult(req);
         if(!errors.isEmpty()){
-            return res.status(400).render('signup',{errors: errors.array()});
+            return res.status(400).render('user/signup',{errors: errors.array()});
         }
         const rows=await userQueries.getUserByUsername(req.body.username);
         if(rows.length>0){
-            return res.status(400).render('signup',{errors: [{
+            return res.status(400).render('user/signup',{errors: [{
                 msg: 'username already exists',
             }]});
         }

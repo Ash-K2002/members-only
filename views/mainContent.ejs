@@ -8,6 +8,6 @@
 <body>
     <h1>Welcome <%=user.first_name%></h1>
     <a href="manage-account/<%=user.id%>">Your account</a>
-    
+    <%-include('messages/messageDeck', {messages: messages, role:user.role})%>
 </body>
 </html>

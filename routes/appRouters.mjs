@@ -28,5 +28,6 @@ appRouter.get('/main-content', usersController.ensureAuthenticated, async (req, 
 appRouter.get('/manage-account/:id',usersController.getManageUser);
 appRouter.post("/login",usersController.postLogin);
 appRouter.post('/message/delete/:id',messageController.postDeleteMessage);
-
+appRouter.get('/message/create/:userId',messageController.getCreateMessage);
+appRouter.post('/message/create/:userId',messageController.postCreateMessage);
 export default appRouter;

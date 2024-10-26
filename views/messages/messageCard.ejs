@@ -8,6 +8,7 @@
     <% } %>
 
     <% if(role==='admin') {%>
+        <p>Created by: <%= message.created_by %>, Creator's id: <%=message.user_id%></p>
         <form action="message/delete/<%=message.id%>" method="post">
             <button type="submit">delete message</button>
         </form>

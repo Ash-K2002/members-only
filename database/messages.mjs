@@ -4,23 +4,19 @@ import {pool} from '../config/db.mjs';
 async function createMessage(message){
     const {heading,
         content, 
-        createdAt,
-        updatedAt,
         userId,
     }=message;
 
     const queryString=`
     INSERT INTO messages 
-    (heading, content, created_at, updated_at, user_id)
+    (heading, content, user_id)
     VALUES
-    ($1, $2, $3, $4, $5);
+    ($1, $2, $3);
     `;
     try{
         await pool.query(queryString,
-        [heading,
+        [   heading,
             content,
-            createdAt,
-            updatedAt,
             userId,
         ]
     );
@@ -51,7 +47,15 @@ async function readMessageById(id){
 
 async function readAllMessages(){
     try {
-        const {rows}= await pool.query("SELECT * FROM messages");
+        const {rows}= await pool.query(`
+            SELECT 
+            messages.*,
+            CONCAT(users.first_name,' ',users.last_name) AS created_by
+            FROM 
+            messages
+            JOIN 
+            users ON messages.user_id= users.id;
+            `);
         return rows;
     } catch (err) {
         console.error(err);

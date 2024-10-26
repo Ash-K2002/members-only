@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>main-content</title>
 </head>
 <body>
     <h1>Welcome <%=user.first_name%></h1>
-    <a href="manage-account/<%=user.id%>">Your account</a>
+    <ul>
+        <li><a href="manage-account/<%=user.id%>">Your account</a></li>
+        <li><a href="/message/create/<%=user.id%>">Create Message</a></li>
+    </ul>
+    
     <%-include('messages/messageDeck', {messages: messages, role:user.role})%>
 </body>
 </html>

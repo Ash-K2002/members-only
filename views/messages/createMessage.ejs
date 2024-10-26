@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create message</title>
+</head>
+<body>
+    <form action="/message/create/<%=userId%>" method="post">
+        <label for="heading">Enter Heading</label>
+        <textarea name="heading" id="heading"></textarea>
+        <label for="content">Enter content</label>
+        <textarea name="content" id="content"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

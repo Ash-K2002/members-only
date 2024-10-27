@@ -5,6 +5,8 @@ import {userValidator} from '../validator/userValidator.mjs';
 import passport from "passport";
 import LocalStrategy from 'passport-local';
 import { application } from "express";
+import { config } from 'dotenv';
+config();
 
 
 const postSignup=[
@@ -118,6 +120,32 @@ function ensureAuthenticated(req, res, next){
     res.redirect('/login');
 }
 
+function getUpgradeMember(req, res){
+    console.log(req.params);
+    res.render('user/becomeMember',{
+        userId: req.params.userId,
+    });
+}
+function getUpgradeAdmin(req, res){
+    res.render('user/becomeAdmin',{
+        userId: req.params.userId,
+    });
+}
+
+async function postUpgradeAdmin(req, res){
+    if(req.body.adminCode===process.env.ADMIN_CODE)
+    {
+        await userQueries.changeRole(req.params.userId,'admin');
+    }
+    res.redirect('/manage-account/'+req.params.userId);
+}
+async function postUpgradeMember(req, res){
+    if(req.body.decision==='yes'){
+        await userQueries.changeRole(req.params.userId,'member');
+    }
+    res.redirect('/manage-account/'+req.params.userId);
+}
+
 export const usersController={
    getSignup,
    postSignup,
@@ -125,5 +153,9 @@ export const usersController={
    postLogin,
    getManageUser,
    ensureAuthenticated,
+   getUpgradeAdmin,
+   getUpgradeMember,
+   postUpgradeMember,
+   postUpgradeAdmin,
    
 }

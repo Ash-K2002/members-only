@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>User id: <%=userId%></p>
+    <form action="/upgrade/member/<%=userId%>" method="post">
+        <p>Do you really want to become a member?</p>
+        <input type="radio" name="decision" id="decision1" value="yes">
+        <label for="decision1">Yes</label>
+        <input type="radio" name="decision" id="decision2" value="no">
+        <label for="decision2">No</label>
+        <input type="radio" name="decision" id="decision3" value="gugu gaga">
+        <label for="decision3">Gugu Gaga</label>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

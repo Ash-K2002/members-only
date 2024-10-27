@@ -12,7 +12,15 @@
         <li>Account created at: <%=user.created_at%></li>
         <li>Role: <%=user.role%></li>
     </ul>
-    <a href="/logout">Logout</a>
-    <a href="/main-content">Back to main content</a>
+    <h2>Important links</h2>
+    <ul>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/main-content">Back to main content</a></li>
+        <%if(user.role==='user'){%>
+        <li><a href="/upgrade/member/<%=user.id%>">upgrade to member</a></li>  
+        <%}else if(user.role==='member'){%>
+        <li><a href="/upgrade/admin/<%=user.id%>">upgrade to admin</a></li>            
+        <%}%>
+    </ul>
 </body>
 </html>

@@ -36,9 +36,24 @@ async function getUserById(id){
     return rows;
 }
 
+async function changeRole(id,role){
+    const queryString=`
+    UPDATE users
+    SET 
+    role=$1
+    WHERE id=$2;`;
+    try {
+        pool.query(queryString,[role,id]);
+    } catch (err) {
+        console.error(err);
+        throw new Error(err);
+    }
+}
+
 export const userQueries={
     addUser,
     getUserByUsername,
     getUserById,
+    changeRole,
     
 }

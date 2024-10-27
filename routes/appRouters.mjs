@@ -18,8 +18,7 @@ appRouter.get("/login", (req, res, next)=>{
     res.render("user/login");
 });
 appRouter.get('/main-content', usersController.ensureAuthenticated, async (req, res)=>{
-    const messages = await messageQueries.readAllMessages();
-    console.log(messages);    
+    const messages = await messageQueries.readAllMessages();   
     res.render('mainContent',{
         user: req.user,
         messages: messages,
@@ -30,4 +29,9 @@ appRouter.post("/login",usersController.postLogin);
 appRouter.post('/message/delete/:id',messageController.postDeleteMessage);
 appRouter.get('/message/create/:userId',messageController.getCreateMessage);
 appRouter.post('/message/create/:userId',messageController.postCreateMessage);
+appRouter.get('/upgrade/member/:userId',usersController.getUpgradeMember);
+appRouter.post('/upgrade/member/:userId',usersController.postUpgradeMember);
+appRouter.get('/upgrade/admin/:userId',usersController.getUpgradeAdmin);
+appRouter.post('/upgrade/admin/:userId',usersController.postUpgradeAdmin);
+
 export default appRouter;
